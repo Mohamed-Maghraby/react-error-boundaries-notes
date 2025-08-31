@@ -1,8 +1,14 @@
 import {
-  ErrorBoundary,
   FallbackProps,
-  useErrorBoundary,
 } from "react-error-boundary";
+
+/**
+ * Skelton or fallback component to the ErrorBoundary.
+ * Render when Products Fetching Error happens.
+ * Made especially for react-error-boundary lib.
+ * provides a type for props "FallbackProps", the error itself and a resetErrorBoundary to reset the component.
+ */
+
 
 export function ProductsFetchingError(props: FallbackProps) {
   const { error, resetErrorBoundary } = props;

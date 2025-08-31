@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CartItems from "../components/CartItems";
 import CheckoutSummary from "../components/CheckoutSummary";
 import CheckoutButton from "../components/CheckoutButton";
-import { fetchCartItems } from "../fetchers/products";
+import { fetchCartItems, fetchCartItemsNoErrors } from "../fetchers/products";
 import { useErrorBoundary } from "react-error-boundary";
+
+/**
+ * By using react-error-boundary we get access to useErrorBoundary hook which returns a setter fn we can use it to pass 
+ * the error to the boundary instead if internally handle the the error with a state.
+ */
 
 export const UsingTheRightWay = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -26,8 +31,10 @@ export const UsingTheRightWay = () => {
     const fetchItems = async () => {
       try {
         const items = await fetchCartItems();
+        // const items = await fetchCartItemsNoErrors();
         setCartItems(items);
       } catch (err) {
+        //pass the error to this fn so error boundary component can work.
         showBoundary(err);
       }
     };

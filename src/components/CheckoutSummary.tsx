@@ -1,5 +1,9 @@
 import React from "react";
 
+/**
+ * This component throws an error by default to test error boundaries related to rendering error.
+ */
+
 const CheckoutSummary = ({ subtotal, discount, total }) => {
   throw new Error("Unexpcted Render Error occured!");
 

@@ -1,53 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CartItems from "../components/CartItems";
 import CheckoutSummary from "../components/CheckoutSummary";
 import CheckoutButton from "../components/CheckoutButton";
-import { ProductsFetchingError } from "../components/errors/ProductsFetchingError";
 import { fetchCartItems } from "../fetchers/products";
 
-export class StandardErrorBoundary extends React.Component<any, any> {
-  state: {
-    hasError: boolean;
-    error?: Error;
-  };
-
-  constructor(props: any) {
-    super(props);
-
-    // to keep track of when an error occurs
-    // and the error itself
-    this.state = {
-      hasError: false,
-      error: undefined,
-    };
-  }
-
-  // update the component state when an error occurs
-  static getDerivedStateFromError(error) {
-    // specify that the error boundary has caught an error
-    return {
-      hasError: true,
-      error: error,
-    };
-  }
-
-  // Log the error to some sort of a service logger
-  componentDidCatch(error, errorInfo) {
-    console.log("Error caught!");
-    console.error(error);
-    console.error(errorInfo);
-  }
-
-  render() {
-    // if an error occurred
-    if (this.state.hasError) {
-      return <ProductsFetchingError error={this.state.error?.message || ""} />;
-    } else {
-      // default behavior
-      return this.props.children;
-    }
-  }
-}
+/**
+ * Component that fetch and display data.
+ * IF fetching error happens in this component it won't be handled with the boundary 
+ */
 
 export const UsingErrorBoundaries = () => {
   const [cartItems, setCartItems] = useState([]);

@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import CartItems from "../components/CartItems";
 import CheckoutSummary from "../components/CheckoutSummary";
 import CheckoutButton from "../components/CheckoutButton";
-import { ProductsFetchingError } from "../components/errors/ProductsFetchingError";
+import { ProductsFetchingError } from "../components/errorsFallbacks/ProductsFetchingError";
 import { fetchCartItems } from "../fetchers/products";
+
+/**
+ * The same component but handles fetching error by using state to store the error and display it.
+ */
 
 export const UsingState = () => {
   const [cartItems, setCartItems] = useState([]);

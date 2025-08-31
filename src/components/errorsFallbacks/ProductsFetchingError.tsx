@@ -1,3 +1,9 @@
+/**
+ * Skelton or fallback component to the ErrorBoundary.
+ * Render when Products Fetching Error happens.
+*/
+
+//defining prop type
 interface ProductsFetchingErrorProps {
   error: string;
 }
